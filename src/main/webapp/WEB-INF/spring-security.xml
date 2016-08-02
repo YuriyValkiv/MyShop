@@ -18,10 +18,10 @@
 
        <http auto-config="true"  use-expressions="true">
               <intercept-url pattern="/" access="permitAll"/>
-              <intercept-url pattern="/item" access="hasRole('ROLE_USER')"/>
+              <intercept-url pattern="/admin" access="hasRole('ROLE_ADMIN')"/>
 
               <form-login login-page="/#login-modal"
-                          authentication-failure-url="/products"
+                          authentication-failure-url="/"
                           default-target-url="/"/>
 
               <!--<access-denied-handler error-page="/denied"/>-->

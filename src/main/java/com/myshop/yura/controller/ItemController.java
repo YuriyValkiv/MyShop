@@ -38,6 +38,7 @@ public class ItemController {
 
         List<Lot> lot = lotService.getByName(name);
         modelMap.put("product", lot);
+        modelMap.put("nameTitle", lot.get(0).getName());
         return "item";
     }
 }
