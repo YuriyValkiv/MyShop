@@ -67,7 +67,7 @@ public class AdminController {
                 e.printStackTrace();
             }
         } else {
-            System.out.println("foo");
+            System.out.println("fail");
         }
 
         if (!imageBig.isEmpty()) {
