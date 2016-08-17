@@ -57,33 +57,22 @@ public class AdminController {
         String workingDir = AdminController.class.getResource("").getPath();
         String pathForImage = workingDir+"../../../../../../../../src/main/webapp/resources/images/phones/";
         String pathForImageBig = workingDir+"../../../../../../../../src/main/webapp/resources/images/phones/bigImg/";
-        if (!image.isEmpty()) {
+        if (!image.isEmpty() && !imageBig.isEmpty()) {
             try {
-                byte [] bytes = image.getBytes();
-                BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(new File(pathForImage + imageName)));
-                stream.write(bytes);
-                stream.close();
+                byte [] bytesImage = image.getBytes();
+                byte [] bytesImageBig = imageBig.getBytes();
+                BufferedOutputStream streamImage = new BufferedOutputStream(new FileOutputStream(new File(pathForImage + imageName)));
+                BufferedOutputStream streamImageBig = new BufferedOutputStream(new FileOutputStream(new File(pathForImageBig + imageBigName)));
+                streamImageBig.write(bytesImageBig);
+                streamImageBig.close();
+                streamImage.write(bytesImage);
+                streamImage.close();
             } catch (Exception e) {
                 e.printStackTrace();
             }
         } else {
             System.out.println("fail");
         }
-
-        if (!imageBig.isEmpty()) {
-            try {
-                byte [] bytes = imageBig.getBytes();
-                BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(new File(pathForImageBig + imageBigName)));
-                stream.write(bytes);
-                stream.close();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        } else {
-            System.out.println("failed");
-        }
-
-        System.out.println(pathForImage);
 
         String imageNew = "/resources/images/phones/" + imageName;
         String imageBigNew = "/resources/images/phones/bigImg/" + imageBigName;

@@ -40,7 +40,7 @@ public class ProductsController {
         for (int i = 0; i < lots.size(); i++) {
             randomPhoto.add(i);
         }
-        Collections.sort(randomPhoto);
+        Collections.shuffle(randomPhoto);
         modelMap.put("bigImageOne", lots.get(randomPhoto.get(0)).getImageBig());
         modelMap.put("bigImageTwo", lots.get(randomPhoto.get(1)).getImageBig());
         modelMap.put("bigImageThree", lots.get(randomPhoto.get(2)).getImageBig());

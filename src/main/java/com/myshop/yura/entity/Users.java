@@ -3,7 +3,7 @@ package com.myshop.yura.entity;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "users")
+@Table(name = "Users")
 public class Users {
 
     @Id

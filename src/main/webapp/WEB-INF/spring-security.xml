@@ -36,9 +36,9 @@
         <authentication-provider>
             <jdbc-user-service data-source-ref="dataSource"
                                users-by-username-query=
-                                       "SELECT users_email, users_password, enabled FROM users WHERE users_email=?"
+                                       "SELECT users_email, users_password, enabled FROM Users WHERE users_email=?"
                                authorities-by-username-query=
-                                       "SELECT users_email, users_role FROM users
+                                       "SELECT users_email, users_role FROM Users
 						WHERE users_email = ? " />
             <password-encoder hash="md5"/>
         </authentication-provider>
