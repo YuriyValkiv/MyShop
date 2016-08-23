@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.ServletContext;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -41,6 +42,7 @@ public class AdminController {
         return "admin";
     }
 
+    String imageDir;
     @RequestMapping(value = "/admin/add")
     private String addToDB(
             @RequestParam(value = "name") String name,
@@ -54,30 +56,42 @@ public class AdminController {
     ) {
         String imageName = image.getOriginalFilename();
         String imageBigName = imageBig.getOriginalFilename();
-        String workingDir = AdminController.class.getResource("").getPath();
-        String pathForImage = workingDir+"../../../../../../../../src/main/webapp/resources/images/phones/";
-        String pathForImageBig = workingDir+"../../../../../../../../src/main/webapp/resources/images/phones/bigImg/";
-        if (!image.isEmpty() && !imageBig.isEmpty()) {
-            try {
-                byte [] bytesImage = image.getBytes();
-                byte [] bytesImageBig = imageBig.getBytes();
-                BufferedOutputStream streamImage = new BufferedOutputStream(new FileOutputStream(new File(pathForImage + imageName)));
-                BufferedOutputStream streamImageBig = new BufferedOutputStream(new FileOutputStream(new File(pathForImageBig + imageBigName)));
-                streamImageBig.write(bytesImageBig);
-                streamImageBig.close();
-                streamImage.write(bytesImage);
-                streamImage.close();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        } else {
-            System.out.println("fail");
+//        String workingDir = AdminController.class.getResource("/src/main/java/com/myshop/yura/controller/AdminController.java").getPath();
+        String workingDir = "work";
+        System.out.println(workingDir);
+        switch (type) {
+            case "smartphone": imageDir = "phones";
+                break;
+            case "notebook": imageDir = "notebooks";
+                break;
         }
-
-        String imageNew = "/resources/images/phones/" + imageName;
-        String imageBigNew = "/resources/images/phones/bigImg/" + imageBigName;
-        Lot lot = new Lot(name, type, price, country, imageNew, imageBigNew, description, descriptionBig);
-        lotService.addLot(lot);
+//        System.out.println(imageDir);
+//        //TODO: fix path in linux (everything which are below work fine in windows
+////        String pathForImage = workingDir+"../../../../../../../../src/main/webapp/resources/images/" + imageDir;
+////        String pathForImageBig = workingDir+"../../../../../../../../src/main/webapp/resources/images/" + imageDir + "/bigImg/";
+//        String pathForImage = workingDir + "/src/main/webapp/resources/images/" + imageDir;
+//        String pathForImageBig = workingDir + "/src/main/webapp/resources/images/" + imageDir + "/bigImg/";
+//        if (!image.isEmpty() && !imageBig.isEmpty()) {
+//            try {
+//                byte [] bytesImage = image.getBytes();
+//                byte [] bytesImageBig = imageBig.getBytes();
+//                BufferedOutputStream streamImage = new BufferedOutputStream(new FileOutputStream(new File(pathForImage + imageName)));
+//                BufferedOutputStream streamImageBig = new BufferedOutputStream(new FileOutputStream(new File(pathForImageBig + imageBigName)));
+//                streamImageBig.write(bytesImageBig);
+//                streamImageBig.close();
+//                streamImage.write(bytesImage);
+//                streamImage.close();
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//            }
+//        } else {
+//            System.out.println("fail");
+//        }
+//
+//        String imageNew = "/resources/images/" + imageDir +"/" + imageName;
+//        String imageBigNew = "/resources/images/" + imageDir + "/bigImg/" + imageBigName;
+//        Lot lot = new Lot(name, type, price, country, imageNew, imageBigNew, description, descriptionBig);
+//        lotService.addLot(lot);
         return "admin";
     }
 

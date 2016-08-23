@@ -43,7 +43,10 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="type">Lot type</label>
                         <div class="col-md-4">
-                            <input id="type" name="type" placeholder="type" class="form-control input-md" type="text">
+                            <select id="type" name="type" class="form-control input-md">
+                                <option>smartphone</option>
+                                <option>notebook</option>
+                            </select>
 
                         </div>
                     </div>
@@ -52,7 +55,7 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="country">Lot country</label>
                         <div class="col-md-4">
-                            <input id="country" name="country" placeholder="country" class="form-control input-md" type="text">
+                            <input id="country" name="country" class="form-control input-md" placeholder="country" type="text">
 
                         </div>
                     </div>

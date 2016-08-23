@@ -65,4 +65,12 @@ public class LotDAO {
         criteria.add(Restrictions.like("name", name));
         return criteria.list();
     }
+
+    @SuppressWarnings("unchecked")
+    public List<Lot> getByType(String type) {
+        Session session = sessionFactory.getCurrentSession();
+        Criteria criteria = session.createCriteria(Lot.class);
+        criteria.add(Restrictions.like("type", type));
+        return criteria.list();
+    }
 }

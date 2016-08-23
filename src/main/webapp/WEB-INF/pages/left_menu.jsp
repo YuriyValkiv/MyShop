@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -5,11 +6,10 @@
 </head>
 <body>
     <div class="col-md-3">
-        <p class="lead">Shop Name</p>
+        <p class="lead">Categories:</p>
         <div class="list-group">
-            <a href="/products" class="list-group-item">Smartphones</a>
-            <a href="#" class="list-group-item">Category 2</a>
-            <a href="#" class="list-group-item">Category 3</a>
+            <a href="/products" class="list-group-item <c:out value="${activeListItemOne}"/>">Smartphones</a>
+            <a href="/products/?type=notebook" class="list-group-item <c:out value="${activeListItemTwo}"/>">Laptops</a>
         </div>
     </div>
 </body>

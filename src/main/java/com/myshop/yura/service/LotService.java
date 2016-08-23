@@ -43,4 +43,9 @@ public class LotService {
     public List<Lot> getByName(String name) {
         return lotDAO.getByName(name);
     }
+
+    @Transactional
+    public List<Lot> getByType(String type) {
+        return lotDAO.getByType(type);
+    }
 }

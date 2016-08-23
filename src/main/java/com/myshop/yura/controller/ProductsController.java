@@ -11,7 +11,9 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -26,8 +28,11 @@ public class ProductsController {
     @Autowired
     private UsersService usersService;
 
+    List<Lot> lots;
+
     @RequestMapping(value = "/products")
-    public String getProducts(ModelMap modelMap) {
+    public String getProducts(
+            @RequestParam(value = "type", required = false) String type, ModelMap modelMap) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (!(authentication instanceof AnonymousAuthenticationToken)) {
             UserDetails userDetails = (UserDetails) authentication.getPrincipal();
@@ -35,7 +40,13 @@ public class ProductsController {
             modelMap.put("username", user.get(0).getName());
         }
 
-        List<Lot> lots = lotService.getAll();
+        if (type != null) {
+            lots = lotService.getByType(type);
+            modelMap.put("activeListItemTwo", "active");
+        } else {
+            lots = lotService.getByType("smartphone");
+            modelMap.put("activeListItemOne", "active");
+        }
         ArrayList<Integer> randomPhoto = new ArrayList<>();
         for (int i = 0; i < lots.size(); i++) {
             randomPhoto.add(i);
