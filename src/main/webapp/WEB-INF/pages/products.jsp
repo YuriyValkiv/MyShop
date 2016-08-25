@@ -96,6 +96,7 @@
                                         <span class="glyphicon glyphicon-star"></span>
                                     </p>
                                 </div>
+                                <a href="/addToCart?name=${product.name}"><button class="btn btn-success">Add to cart</button></a>
                             </div>
                         </div>
                     </c:forEach>

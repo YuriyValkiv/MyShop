@@ -48,10 +48,10 @@
                     <sec:authorize access="hasAnyRole('ROLE_USER','ROLE_ADMIN')">
                         <span class="username"><c:out value="${username}"/></span>
                         <a href="/j_spring_security_logout"><button type="button" class="btn btn-default">Logout</button></a>
+                        <a href="/shoppingCart" class="btn btn-info btn-lg">
+                            <span class="glyphicon glyphicon-shopping-cart"></span> Shopping Cart
+                        </a>
                     </sec:authorize>
-                    <a href="#" class="btn btn-info btn-lg">
-                        <span class="glyphicon glyphicon-shopping-cart"></span> Shopping Cart
-                    </a>
                 </div>
             </div>
         </div><!--/.nav-collapse -->
